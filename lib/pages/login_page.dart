@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:minimal_chat_app/components/my_button.dart';
 import 'package:minimal_chat_app/components/my_textfield.dart';
-import 'package:minimal_chat_app/pages/register_page.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+  LoginPage({super.key, required this.onPressed});
 
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final void Function()? onPressed;
 
   void _login() {}
 
@@ -66,10 +66,7 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 TextButton(
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => RegisterPage()),
-                  ),
+                  onPressed: onPressed,
                   child: Text(
                     "Register Now",
                     style: TextStyle(
