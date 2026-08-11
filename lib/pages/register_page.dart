@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:minimal_chat_app/auth/auth_service.dart';
 import 'package:minimal_chat_app/components/my_button.dart';
 import 'package:minimal_chat_app/components/my_textfield.dart';
 
@@ -12,7 +13,23 @@ class RegisterPage extends StatelessWidget {
 
   final void Function()? onPressed;
 
-  void _register() {}
+  void _register(BuildContext context) {
+    final AuthService auth = AuthService();
+
+    if (_passwordController.text == _confirmPasswordController.text) {
+      try {
+        auth.registerWithEmailPassword(
+          _emailController.text,
+          _passwordController.text,
+        );
+      } catch (e) {
+        showDialog(
+          context: (context),
+          builder: ((context) => AlertDialog(title: Text(e.toString()))),
+        );
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,7 +82,10 @@ class RegisterPage extends StatelessWidget {
 
             SizedBox(height: 25),
 
-            MyButton(buttonText: "Login", onPressed: _register),
+            MyButton(
+              buttonText: "Register",
+              onPressed: () => _register(context),
+            ),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
