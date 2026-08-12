@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minimal_chat_app/auth/auth_service.dart';
+import 'package:minimal_chat_app/services/auth/auth_service.dart';
 import 'package:minimal_chat_app/components/my_button.dart';
 import 'package:minimal_chat_app/components/my_textfield.dart';
 
@@ -28,6 +28,12 @@ class RegisterPage extends StatelessWidget {
           builder: ((context) => AlertDialog(title: Text(e.toString()))),
         );
       }
+    } else {
+      showDialog(
+        context: context,
+        builder: (context) =>
+            AlertDialog(content: Text("Passwords don't match")),
+      );
     }
   }
 
