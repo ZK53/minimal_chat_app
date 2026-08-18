@@ -1,13 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class MessageModel {
+class Message {
   final String senderID;
   final String senderEmail;
   final String recieverID;
   final String message;
   final Timestamp timestamp;
 
-  MessageModel({
+  Message({
     required this.senderID,
     required this.senderEmail,
     required this.recieverID,
